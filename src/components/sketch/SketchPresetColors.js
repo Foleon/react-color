@@ -34,10 +34,11 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
     'no-presets': !colors || !colors.length,
   })
 
-  const handleClick = (hex, e) => {
+  const handleClick = (hex, e, name) => {
     onClick({
       hex,
       source: 'hex',
+      name,
     }, e)
   }
 
@@ -47,7 +48,7 @@ export const SketchPresetColors = ({ colors, onClick = () => {}, onSwatchHover }
         const c = typeof colorObjOrString === 'string'
           ? { color: colorObjOrString }
           : colorObjOrString
-        const key = `${c.color}${c.title || ''}`
+        const key = `${c.color}${c.title || ''}${c.name || ''}`
         return (
           <div key={ key } style={ styles.swatchWrap }>
             <Swatch

@@ -7,8 +7,9 @@ import Checkboard from './Checkboard'
 const ENTER = 13
 
 export const Swatch = ({ color, style, onClick = () => {}, onHover, title = color,
-  children, focus, focusStyle = {} }) => {
+  children, focus, focusStyle = {}, name }) => {
   const transparent = color === 'transparent'
+  const divider = color === 'divider'
   const styles = reactCSS({
     default: {
       swatch: {
@@ -21,16 +22,28 @@ export const Swatch = ({ color, style, onClick = () => {}, onHover, title = colo
         ...style,
         ...(focus ? focusStyle : {}),
       },
+      divider: {
+        background: 'rgba(0,0,0,0.2)',
+        height: '100%',
+        width: '1px',
+        marginLeft: '8px',
+      }
     },
   })
 
-  const handleClick = e => onClick(color, e)
-  const handleKeyDown = e => e.keyCode === ENTER && onClick(color, e)
+  const handleClick = e => onClick(color, e, name)
+  const handleKeyDown = e => e.keyCode === ENTER && onClick(color, e, name)
   const handleHover = e => onHover(color, e)
 
   const optionalEvents = {}
   if (onHover) {
     optionalEvents.onMouseOver = handleHover
+  }
+
+  if (divider) {
+    return (
+        <div style={ styles.divider } />
+    )
   }
 
   return (
