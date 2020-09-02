@@ -35,6 +35,7 @@ export const toState = (data, oldHue) => {
   const transparent = hex === '000000' && rgb.a === 0
 
   return {
+    ...data,
     hsl,
     hex: transparent ? 'transparent' : `#${ hex }`,
     rgb,

@@ -1,6 +1,6 @@
 {
-  "name": "react-color",
-  "version": "2.19.0",
+  "name": "foleon-react-color",
+  "version": "1.0.0",
   "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -14,6 +14,7 @@
     "url": "https://github.com/casesandberg/react-color/issues"
   },
   "scripts": {
+    "prepare": "npm run lib",
     "test": "npm run jest && npm run eslint",
     "jest": "jest",
     "eslint": "eslint src/**/*.js",
@@ -21,7 +22,7 @@
     "es": "npm run clean-es && node scripts/use-module-babelrc.js && babel src -d es && node scripts/restore-original-babelrc.js",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-es": "rm -rf es && mkdir es",
-    "prepublish": "npm run lib && npm run es",
+    "prepublish": "npm run lib",
     "docs": "npm run docs-server",
     "docs-server": "node ./scripts/docs-server",
     "docs-dist": "node ./scripts/docs-dist",
